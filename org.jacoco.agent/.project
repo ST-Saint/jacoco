@@ -22,14 +22,25 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/jacocoagent.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/org.jacoco.agent/target/classes/jacocoagent.jar</locationURI>
-		</link>
-		<link>
 			<name>.settings</name>
 			<type>2</type>
 			<locationURI>PARENT-1-PROJECT_LOC/org.jacoco.core/.settings</locationURI>
 		</link>
+		<link>
+			<name>src/jacocoagent.jar</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/org.jacoco.agent/target/classes/jacocoagent.jar</locationURI>
+		</link>
 	</linkedResources>
+	<filteredResources>
+		<filter>
+			<id>1668621676591</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|.metadata|archetype-resources|META-INF/maven|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>

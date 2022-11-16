@@ -113,6 +113,7 @@ public class CoverageTransformer implements ClassFileTransformer {
 	 */
 	boolean filter(final ClassLoader loader, final String classname,
 			final ProtectionDomain protectionDomain) {
+
 		if (loader == null) {
 			if (!inclBootstrapClasses) {
 				return false;
@@ -126,7 +127,13 @@ public class CoverageTransformer implements ClassFileTransformer {
 				return false;
 			}
 		}
+		if (!classname.startsWith(AGENT_PREFIX) &&
 
+				includes.matches(classname) &&
+
+				!excludes.matches(classname)) {
+			System.out.println("[jacoco] instrument classname: " + classname);
+		}
 		return !classname.startsWith(AGENT_PREFIX) &&
 
 				includes.matches(classname) &&

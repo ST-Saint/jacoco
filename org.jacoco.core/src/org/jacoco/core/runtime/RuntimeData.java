@@ -84,6 +84,7 @@ public class RuntimeData {
 		synchronized (store) {
 			final SessionInfo info = new SessionInfo(sessionId, startTimeStamp,
 					System.currentTimeMillis());
+			System.out.println("[jacoco] write session info");
 			sessionInfoVisitor.visitSessionInfo(info);
 			store.accept(executionDataVisitor);
 			if (reset) {

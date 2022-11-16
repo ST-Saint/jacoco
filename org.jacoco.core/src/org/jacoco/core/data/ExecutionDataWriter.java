@@ -98,6 +98,7 @@ public class ExecutionDataWriter
 	}
 
 	public void visitClassExecution(final ExecutionData data) {
+		System.out.println("[jacoco] data has hits: " + data.hasHits());
 		if (data.hasHits()) {
 			try {
 				out.writeByte(BLOCK_EXECUTIONDATA);
