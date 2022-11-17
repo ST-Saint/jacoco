@@ -171,7 +171,6 @@ public final class ExecutionDataStore implements IExecutionDataVisitor {
 	 *            interface to write content to
 	 */
 	public void accept(final IExecutionDataVisitor visitor) {
-		System.out.println("[jacoco] contents size " + getContents().size());
 		for (final ExecutionData data : getContents()) {
 			visitor.visitClassExecution(data);
 		}
