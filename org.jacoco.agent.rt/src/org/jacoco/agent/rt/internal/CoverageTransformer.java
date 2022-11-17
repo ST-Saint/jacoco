@@ -132,7 +132,7 @@ public class CoverageTransformer implements ClassFileTransformer {
 				includes.matches(classname) &&
 
 				!excludes.matches(classname)) {
-			System.out.println("[jacoco] instrument classname: " + classname);
+			System.out.println("[jacoco] instrumented classname: " + classname);
 		}
 		return !classname.startsWith(AGENT_PREFIX) &&
 
