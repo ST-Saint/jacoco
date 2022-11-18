@@ -17,6 +17,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+import java.lang.reflect.Field;
+
 import org.jacoco.core.runtime.AgentOptions;
 import org.jacoco.core.runtime.IRuntime;
 import org.jacoco.core.runtime.InjectedClassRuntime;
@@ -51,8 +53,22 @@ public final class PreMain {
 
 		final IRuntime runtime = createRuntime(inst);
 		runtime.startup(agent.getData());
+
+		try {
+			System.out.println("[jacoco] test assign runtime data");
+			final Class<?> jccGuidance = PreMain.class.getClassLoader()
+					.loadClass("edu.berkeley.cs.jqf.fuzz.jcc.JccGuidance");
+			System.out.println(
+					"[jacoco] load jcc guidance: " + (jccGuidance == null));
+			final Field jccRuntime = jccGuidance.getField("runtime");
+			System.out.println("[jacoco] get field: " + (jccRuntime == null));
+			jccRuntime.set(null, runtime);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		inst.addTransformer(new CoverageTransformer(runtime, agentOptions,
 				IExceptionLogger.SYSTEM_ERR));
+
 	}
 
 	private static IRuntime createRuntime(final Instrumentation inst)
