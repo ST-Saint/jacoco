@@ -60,9 +60,10 @@ public final class PreMain {
 					.loadClass("edu.berkeley.cs.jqf.fuzz.jcc.JccGuidance");
 			System.out.println(
 					"[jacoco] load jcc guidance: " + (jccGuidance == null));
-			final Field jccRuntime = jccGuidance.getField("runtime");
-			System.out.println("[jacoco] get field: " + (jccRuntime == null));
-			jccRuntime.set(null, runtime);
+			final Field jccRuntimeData = jccGuidance.getField("runtimeData");
+			System.out
+					.println("[jacoco] get field: " + (jccRuntimeData == null));
+			jccRuntimeData.set(null, agent.getData());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
