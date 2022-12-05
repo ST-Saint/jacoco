@@ -67,6 +67,10 @@ public class RuntimeData {
 		return sessionId;
 	}
 
+	public ExecutionDataStore getStore() {
+		return store;
+	}
+
 	/**
 	 * Collects the current execution data and writes it to the given
 	 * {@link IExecutionDataVisitor} object.

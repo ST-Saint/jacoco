@@ -148,6 +148,10 @@ public final class ExecutionDataStore implements IExecutionDataVisitor {
 		return entries.get(Long.valueOf(id));
 	}
 
+	public Map<Long, ExecutionData> getEntries() {
+		return entries;
+	}
+
 	/**
 	 * Checks whether execution data for classes with the given name are
 	 * contained in the store.

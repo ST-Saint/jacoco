@@ -92,8 +92,25 @@ public class CompactDataOutput extends DataOutputStream {
 	 */
 	public void writeIntArray(final int[] value) throws IOException {
 		writeVarInt(value.length);
-		for (final int b : value) {
-			writeInt(b);
+		int buffer = 0;
+		int bufferSize = 0;
+		for (final int v : value) {
+			boolean b = (v != 0) ? true : false;
+			if (b) {
+				buffer |= 0x01 << bufferSize;
+			}
+			if (++bufferSize == 8) {
+				writeByte(buffer);
+				buffer = 0;
+				bufferSize = 0;
+			}
 		}
+		if (bufferSize > 0) {
+			writeByte(buffer);
+		}
+		// for (final int b : value) {
+		// // writeInt(b);
+		// writeByte
+		// }
 	}
 }

@@ -72,6 +72,7 @@ class ProbeInserter extends MethodVisitor implements IProbeInserter {
 			pos += t.getSize();
 		}
 		variable = pos;
+		weight = 1;
 		beginLabel = new Label();
 	}
 

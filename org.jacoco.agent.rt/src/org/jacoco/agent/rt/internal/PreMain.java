@@ -13,6 +13,7 @@
 package org.jacoco.agent.rt.internal;
 
 import java.lang.instrument.Instrumentation;
+import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -51,6 +52,16 @@ public final class PreMain {
 
 		final IRuntime runtime = createRuntime(inst);
 		runtime.startup(agent.getData());
+
+		try {
+			final Class<?> jccGuidance = PreMain.class.getClassLoader()
+					.loadClass("edu.berkeley.cs.jqf.fuzz.jcc.JccGuidance");
+			final Field jccRuntime = jccGuidance.getField("runtimeData");
+			jccRuntime.set(null, agent.getData());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		inst.addTransformer(new CoverageTransformer(runtime, agentOptions,
 				IExceptionLogger.SYSTEM_ERR));
 	}

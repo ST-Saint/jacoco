@@ -49,24 +49,30 @@ public final class ProbeArrayStrategyFactory {
 		if (isInterfaceOrModule(reader)) {
 			final ProbeCounter counter = getProbeCounter(reader);
 			if (counter.getCount() == 0) {
+				// System.out.println("NoneProbeArrayStrategy");
 				return new NoneProbeArrayStrategy();
 			}
 			if (version >= Opcodes.V11 && counter.hasMethods()) {
+				// System.out.println("CondyProbeArrayStrategy");
 				return new CondyProbeArrayStrategy(className, true, classId,
 						accessorGenerator);
 			}
 			if (version >= Opcodes.V1_8 && counter.hasMethods()) {
+				// System.out.println("InterfaceProbeArrayStrategy");
 				return new InterfaceFieldProbeArrayStrategy(className, classId,
 						counter.getCount(), accessorGenerator);
 			} else {
+				// System.out.println("LocalProbeArrayStrategy");
 				return new LocalProbeArrayStrategy(className, classId,
 						counter.getCount(), accessorGenerator);
 			}
 		} else {
 			if (version >= Opcodes.V11) {
+				// System.out.println("CondyProbeArrayStrategy");
 				return new CondyProbeArrayStrategy(className, false, classId,
 						accessorGenerator);
 			}
+			// System.out.println("ClassfieldProbeArrayStrategy");
 			return new ClassFieldProbeArrayStrategy(className, classId,
 					InstrSupport.needsFrames(version), accessorGenerator);
 		}
