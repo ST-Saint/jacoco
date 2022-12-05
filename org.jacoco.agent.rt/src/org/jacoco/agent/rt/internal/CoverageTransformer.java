@@ -177,6 +177,14 @@ public class CoverageTransformer implements ClassFileTransformer {
 			}
 		}
 
+		if (!classname.startsWith(AGENT_PREFIX) &&
+
+				includes.matches(classname) &&
+
+				!excludes.matches(classname)) {
+			System.out.println("[jacoco] instrument: " + classname);
+		}
+
 		return !classname.startsWith(AGENT_PREFIX) &&
 
 				includes.matches(classname) &&
