@@ -717,7 +717,7 @@
 
                 buildNumber = project.getProperties().get("buildNumber");
                 pkgName = buildNumber.substring(buildNumber.length() - 7, buildNumber.length());
-                project.getProperties().setProperty("jacoco.runtime.package.name", "org.jacoco.agent.rt.internal_" + pkgName);
+                project.getProperties().setProperty("jacoco.runtime.package.name", "org.jacoco.agent.rt.internal");
 
                 void loadLicense(String libraryId) {
                     version = project.getProperties().get(libraryId + ".version");
