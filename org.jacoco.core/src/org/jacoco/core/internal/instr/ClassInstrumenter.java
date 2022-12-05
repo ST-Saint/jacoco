@@ -86,7 +86,7 @@ public class ClassInstrumenter extends ClassProbesVisitor {
 		Integer weight;
 		if (functionWeightMap.containsKey(className + "#" + name)) {
 			weight = functionWeightMap.get(className + "#" + name);
-		} else if (name.equals("<clinit>") || name.equals("<init>")) {
+		} else if (name.equals("<clinit>")) {
 			weight = Integer.valueOf(0);
 		} else {
 			weight = Integer.valueOf(1);
